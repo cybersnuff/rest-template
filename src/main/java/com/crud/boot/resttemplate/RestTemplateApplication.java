@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Component
+
 public class RestTemplateApplication {
     static final String URL = "http://94.198.50.185:7081/api/users";
 
@@ -37,6 +37,7 @@ public class RestTemplateApplication {
         System.out.println("Сессия: " + sessionId);
 
         String session = sessionId;
+        System.out.println(session);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Cookie", sessionId); // Установка заголовка Cookie с session id
@@ -55,7 +56,7 @@ public class RestTemplateApplication {
         //попытка удаления
         HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
         ResponseEntity<String> responseEntity3 = restTemplate.exchange(deleteUrl, HttpMethod.DELETE, requestEntity, String.class);
-        result.append(responseEntity2.getBody());
+        result.append(responseEntity3.getBody());
 
         System.out.println("Итоговый код \"" + result + "\" - состоит из " + result.length() + " символов");
     }
