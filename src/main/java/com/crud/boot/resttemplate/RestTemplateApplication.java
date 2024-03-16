@@ -47,7 +47,6 @@ public class RestTemplateApplication {
         // попытка создания нового юзера
         HttpEntity<User> save = new HttpEntity<>(userSave, headers);
         ResponseEntity<String> responseEntity1 = restTemplate.exchange(URL, HttpMethod.POST, save, String.class);
-
         result.append(responseEntity1.getBody());
 
         //попытка апдейта
