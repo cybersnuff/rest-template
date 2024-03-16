@@ -12,7 +12,6 @@ public class RestTemplateApplication {
     static final String URL = "http://94.198.50.185:7081/api/users";
 
 
-
     public static void main(String[] args) {
 
         StringBuilder result = new StringBuilder();
@@ -34,7 +33,6 @@ public class RestTemplateApplication {
                 }
             }
         }
-
         System.out.println("Сессия: " + sessionId);
 
         String session = sessionId;
@@ -43,9 +41,9 @@ public class RestTemplateApplication {
         headers.add("Cookie", sessionId); // Установка заголовка Cookie с session id
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        User userSave = new User(3L, "James", "Brown", (byte) 29);
+        User saveUser = new User(3L, "James", "Brown", (byte) 29);
         // попытка создания нового юзера
-        HttpEntity<User> save = new HttpEntity<>(userSave, headers);
+        HttpEntity<User> save = new HttpEntity<>(saveUser, headers);
         ResponseEntity<String> responseEntity1 = restTemplate.exchange(URL, HttpMethod.POST, save, String.class);
         result.append(responseEntity1.getBody());
 
