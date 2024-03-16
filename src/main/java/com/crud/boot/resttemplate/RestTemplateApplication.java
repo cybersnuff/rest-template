@@ -45,18 +45,18 @@ public class RestTemplateApplication {
 
         // попытка создания нового юзера
         HttpEntity<User> save = new HttpEntity<>(saveUser, headers);
-        ResponseEntity<String> responseEntity1 = restTemplate.exchange(URL, HttpMethod.POST, save, String.class);
-        result.append(responseEntity1.getBody());
+        ResponseEntity<String> responseEntitySave = restTemplate.exchange(URL, HttpMethod.POST, save, String.class);
+        result.append(responseEntitySave.getBody());
 
         //попытка апдейта
         HttpEntity<User> update = new HttpEntity<>(updatedUser, headers);
-        ResponseEntity<String> responseEntity2 = restTemplate.exchange(URL, HttpMethod.PUT, update, String.class);
-        result.append(responseEntity2.getBody());
+        ResponseEntity<String> responseEntityUpdate = restTemplate.exchange(URL, HttpMethod.PUT, update, String.class);
+        result.append(responseEntityUpdate.getBody());
 
         //попытка удаления
         HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
-        ResponseEntity<String> responseEntity3 = restTemplate.exchange(deleteUrl, HttpMethod.DELETE, requestEntity, String.class);
-        result.append(responseEntity3.getBody());
+        ResponseEntity<String> responseEntityDelete = restTemplate.exchange(deleteUrl, HttpMethod.DELETE, requestEntity, String.class);
+        result.append(responseEntityDelete.getBody());
 
         System.out.println("Итоговый код \"" + result + "\" - состоит из " + result.length() + " символов");
     }
