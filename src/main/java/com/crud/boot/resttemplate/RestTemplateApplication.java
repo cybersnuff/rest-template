@@ -19,8 +19,7 @@ public class RestTemplateApplication {
         User updatedUser = new User(3L, "Thomas", "Shelby", (byte) 29);
         String deleteUrl = URL + "/3";
 
-        ResponseEntity<String> responseEntity =
-                restTemplate.getForEntity(URL, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity(URL, String.class);
         System.out.println("Список всех пользователей: " + responseEntity.getBody());
 
         List<String> setCookieHeaders = responseEntity.getHeaders().get(HttpHeaders.SET_COOKIE);
@@ -29,7 +28,7 @@ public class RestTemplateApplication {
         String sessionId = null;
         if (setCookieHeaders != null) {
             for (String setCookieHeader : setCookieHeaders) {
-                if (setCookieHeader.contains("SESSIONID")) {
+                if (setCookieHeader.contains("SESSION")) {
                     sessionId = setCookieHeader.split(";")[0]; // Выбираем только значение до первой точки с запятой
                     break;
                 }
@@ -58,7 +57,6 @@ public class RestTemplateApplication {
         ResponseEntity<String> responseEntity3 = restTemplate.exchange(deleteUrl, HttpMethod.DELETE, requestEntity, String.class);
         result.append(responseEntity2.getBody());
 
-        System.out.println("Итоговый код состоит из " + result.length() + " символов");
-
+        System.out.println("Итоговый код \"" + result + "\" - состоит из " + result.length() + " символов");
     }
 }
